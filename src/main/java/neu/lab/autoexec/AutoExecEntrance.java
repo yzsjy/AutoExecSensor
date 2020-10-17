@@ -1,7 +1,5 @@
 package neu.lab.autoexec;
 
-import neu.lab.autoexec.sensor.AutoPrintCallGraph;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +9,13 @@ import java.util.TreeMap;
 public class AutoExecEntrance {
 
     // TODO which directory
-    public static final String projectDir = "/Volumes/MacProData/SensorData/unzip/";
-    public static final String sensorPath = "/Users/yzsjy/Desktop/whole.txt";
+    public static final String projectDir = "D:\\grandtruthProject\\";
+    public static final String sensorPath = "";
 
-    // D:\ws\gitHub_old\
     public static void main(String[] args) throws IOException {
         //TODO which goal
         if (args.length == 0) {
-            new neu.lab.autoexec.sensor.AutoPrintSize(projectDir).autoExe(getPomPath(projectDir), true);
+            new neu.lab.autoexec.sensor.AutoPrintSize(projectDir).autoExe(getPomPathByTest(sensorPath), true);
         } else if (args[0].equals("detect")) {
             new neu.lab.autoexec.sensor.AutoSemanticsConflict(projectDir).autoExe(getPomPathBySize("/root/sensor/out/projectSize.txt"), true);
         } else if (args[0].equals("change")) {
@@ -27,12 +24,14 @@ public class AutoExecEntrance {
             new neu.lab.autoexec.sensor.AutoCount(projectDir).autoExe(getPomPathBySize("/root/sensor/dataset/sortProject.txt"), true);
         } else if (args[0].equals("risk")) {
             new neu.lab.autoexec.sensor.AutoSemanticsRisk(projectDir).autoExe(getPomPathByTreeSize("/root/sensor/out/projectSize.txt"), true);
-        }else if(args[0].equals("classes")){
+        } else if (args[0].equals("classes")) {
             new neu.lab.autoexec.sensor.AutoSemanticsClassesDuplicate(projectDir).autoExe(getPomPathByTreeSize("/root/sensor/out/projectSize.txt"), true);
-        }else if(args[0].equals("sup")){
+        } else if (args[0].equals("sup")) {
             new neu.lab.autoexec.sensor.AutoSemanticsSupImpl(projectDir).autoExe(getPomPathByTreeSize("/root/sensor/out/projectSize.txt"), true);
-        }else if(args[0].equals("printCallGraph")) {
+        } else if (args[0].equals("printCallGraph")) {
             new neu.lab.autoexec.sensor.AutoPrintCallGraph(projectDir).autoExe(getPomPath(sensorPath), getMessage(sensorPath), true);
+        } else if (args[0].equals("printRiskLevel")) {
+            new neu.lab.autoexec.sensor.AutoPrintRiskLevel(projectDir).autoExe(getPomPath("E:\\GrandTruth\\text\\risktest.txt"), true);
         }
     }
 

@@ -11,6 +11,7 @@ public class AutoSemanticsSupImpl extends AutoSensor{
                 "mvn -f=pom.xml -DresultPath=/root/Bsensor/out/sup/ -DignoreTestScope=true -Dmaven.test.skip=true neu.lab:X:1.0:SemanticsConflictSupImpl -e";
     }
 
+    @Override
     public String getCommand(String message) {
         return null;
     }

@@ -19,7 +19,7 @@ import neu.lab.autoexec.util.PomReader;
 
 public abstract class AutoSensor {
     protected String name;
-    private static String Dir = "/Users/yzsjy/Desktop/APILog/";
+    private static String Dir = "D:\\wwww\\sjy\\autoSensor\\";
     public FileSyn donePjct;// project has done;
     public FileSyn mvnExpPjt;// project that throws exception when executes maven command
     public FileSyn notJarPjct;// record project that hasn't conflict
@@ -29,7 +29,7 @@ public abstract class AutoSensor {
     private String projectDir;
 
     public String getBatPath() {
-        return Dir + "decca.bat";
+        return Dir + "multithreadsensor\\" + Thread.currentThread().getName() + name + "decca.bat";
     }
 
     public String getShellPath() {
@@ -313,10 +313,10 @@ public abstract class AutoSensor {
     private void mvnOnePom(String pomPath) throws Exception {
         // try {
         System.out.println("exec mvn for:" + pomPath);
-//        writeBat(pomPath);
-        writeShell(pomPath);
-//        String line = "cmd.exe /C " + getBatPath();
-        String line = "sh " + getShellPath();
+        writeBat(pomPath);
+//        writeShell(pomPath);
+        String line = "cmd.exe /C " + getBatPath();
+//        String line = "sh " + getShellPath();
         System.out.println(line);
         CommandLine cmdLine = CommandLine.parse(line);
         DefaultExecutor executor = new DefaultExecutor();
@@ -330,10 +330,10 @@ public abstract class AutoSensor {
     private void mvnOnePom(String pomPath, String message) throws Exception {
         // try {
         System.out.println("exec mvn for:" + pomPath);
-//        writeBat(pomPath);
-        writeShell(pomPath, message);
-//        String line = "cmd.exe /C " + getBatPath();
-        String line = "sh " + getShellPath();
+        writeBat(pomPath, message);
+//        writeShell(pomPath, message);
+        String line = "cmd.exe /C " + getBatPath();
+//        String line = "sh " + getShellPath();
         System.out.println(line);
         CommandLine cmdLine = CommandLine.parse(line);
         DefaultExecutor executor = new DefaultExecutor();
@@ -391,14 +391,23 @@ public abstract class AutoSensor {
         return pomPaths;
     }
 
-//    protected void writeBat(String pomPath) throws IOException {
-//        PrintWriter printer = new PrintWriter(new BufferedWriter(new FileWriter(getBatPath())));
-//        printer.println("cd " + pomPath);
-//        // printer.println("mvn -Dmaven.test.skip=true package
-//        // neu.lab:conflict:1.0:detect -e");
-//        printer.println(getCommand());
-//        printer.close();
-//    }
+    protected void writeBat(String pomPath) throws IOException {
+        PrintWriter printer = new PrintWriter(new BufferedWriter(new FileWriter(getBatPath())));
+        printer.println("cd " + pomPath);
+        // printer.println("mvn -Dmaven.test.skip=true package
+        // neu.lab:conflict:1.0:detect -e");
+        printer.println(getCommand() + ">>" + Dir + "multithreadsensor\\log\\" + Thread.currentThread().getName() + name + "Log.txt");
+        printer.close();
+    }
+
+    protected void writeBat(String pomPath, String message) throws IOException {
+        PrintWriter printer = new PrintWriter(new BufferedWriter(new FileWriter(getBatPath())));
+        printer.println("cd " + pomPath);
+        // printer.println("mvn -Dmaven.test.skip=true package
+        // neu.lab:conflict:1.0:detect -e");
+        printer.println(getCommand(message) + ">>" + Dir + "multithreadsensor\\log\\" + Thread.currentThread().getName() + name + "Log.txt");
+        printer.close();
+    }
 
     private void writeShell(String pomPath) throws IOException {
         PrintWriter printer = new PrintWriter(new BufferedWriter(new FileWriter(getShellPath())));
