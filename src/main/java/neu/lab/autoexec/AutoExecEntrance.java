@@ -31,7 +31,7 @@ public class AutoExecEntrance {
         } else if (args[0].equals("printCallGraph")) {
             new neu.lab.autoexec.sensor.AutoPrintCallGraph(projectDir).autoExe(getPomPath(sensorPath), getMessage(sensorPath), true);
         } else if (args[0].equals("printRiskLevel")) {
-            new neu.lab.autoexec.sensor.AutoPrintRiskLevel(projectDir).autoExe(getPomPath("E:\\GrandTruth\\text\\risktest.txt"), true);
+            new neu.lab.autoexec.sensor.AutoPrintRiskLevel(projectDir).autoExe(getPomPath("E:\\GrandTruth\\text\\testProject1.txt"), true);
         }
     }
 

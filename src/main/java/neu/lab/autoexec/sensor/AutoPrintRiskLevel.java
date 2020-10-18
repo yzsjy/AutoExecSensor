@@ -10,7 +10,7 @@ public class AutoPrintRiskLevel extends AutoSensor {
 
     @Override
     public String getCommand() {
-        return "mvn -f=pom.xml -Dmaven.test.skip=true -DuseAllJar=false -DfilterSuper=true neu.lab:riddle:1.0:printRiskLevel -DresultPath=E:\\grandtruthResult\\ -e";
+        return "mvn -f=pom.xml -Dmaven.test.skip=true -DuseAllJar=false -DfilterSuper=true neu.lab:riddle:1.0:printRiskLevel -DresultPath=E:\\GrandTruth\\result\\seata\\ -e";
     }
 
     @Override

@@ -19,7 +19,7 @@ import neu.lab.autoexec.util.PomReader;
 
 public abstract class AutoSensor {
     protected String name;
-    private static String Dir = "D:\\wwww\\sjy\\autoSensor\\";
+    private static String Dir = "E:\\GrandTruth\\";
     public FileSyn donePjct;// project has done;
     public FileSyn mvnExpPjt;// project that throws exception when executes maven command
     public FileSyn notJarPjct;// record project that hasn't conflict
@@ -396,7 +396,7 @@ public abstract class AutoSensor {
         printer.println("cd " + pomPath);
         // printer.println("mvn -Dmaven.test.skip=true package
         // neu.lab:conflict:1.0:detect -e");
-        printer.println(getCommand() + ">>" + Dir + "multithreadsensor\\log\\" + Thread.currentThread().getName() + name + "Log.txt");
+        printer.println(getCommand() + ">>" + Dir + "log\\" + Thread.currentThread().getName() + name + "Log.txt");
         printer.close();
     }
 
@@ -405,7 +405,7 @@ public abstract class AutoSensor {
         printer.println("cd " + pomPath);
         // printer.println("mvn -Dmaven.test.skip=true package
         // neu.lab:conflict:1.0:detect -e");
-        printer.println(getCommand(message) + ">>" + Dir + "multithreadsensor\\log\\" + Thread.currentThread().getName() + name + "Log.txt");
+        printer.println(getCommand(message) + ">>" + Dir + "log\\" + Thread.currentThread().getName() + name + "Log.txt");
         printer.close();
     }
 
